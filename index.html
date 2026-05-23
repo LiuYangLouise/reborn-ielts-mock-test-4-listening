@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Reborn新生留学 · IELTS Full Listening Mock Test (Asia-Pacific · Spring · Foot · ISS)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-soft: #f0f7f5;
+    --panel-white: #ffffff;
+    --primary-green: #0F6B6B;
+    --primary-light: #e0f0f0;
+    --border-light: #d4e2e2;
+    --text-dark: #1f3a3a;
+    --text-soft: #2a5f5f;
+    --shadow-sm: 0 8px 20px rgba(0,0,0,0.05);
+    --answered-bg: #e0f2f0;
+    --answered-border: #0F6B6B;
+    --correct-bg: #dcfce7;
+    --correct-border: #4ade80;
+    --incorrect-bg: #fee2e2;
+    --incorrect-border: #f87171;
+    --timer-warning: #dc2626;
+  }
+
+  body {
+    background: linear-gradient(135deg, #e8f2f2 0%, #d4e6e6 100%);
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-dark);
+    padding: 24px 28px;
+    min-height: 100vh;
+  }
+
+  .master-container { max-width: 1200px; margin: 0 auto; }
+
+  .reborn-header {
+    background: var(--panel-white);
+    border-radius: 32px;
+    padding: 18px 28px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    text-align: center;
+  }
+  .reborn-header h1 {
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--primary-green);
+    letter-spacing: 1px;
+    margin: 0;
+  }
+  .reborn-header p {
+    font-size: 14px;
+    color: var(--text-soft);
+    margin-top: 6px;
+  }
+
+  .global-timer-area {
+    background: var(--panel-white);
+    border-radius: 60px;
+    padding: 8px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border: 1px solid var(--border-light);
+  }
+  .global-timer {
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-green);
+    letter-spacing: 1px;
+    background: var(--bg-soft);
+    padding: 4px 14px;
+    border-radius: 40px;
+    transition: color 0.1s;
+  }
+  .global-timer.warning {
+    color: var(--timer-warning);
+    animation: blinkRed 0.8s infinite;
+  }
+  @keyframes blinkRed {
+    0% { opacity: 1; text-shadow: 0 0 0px red; }
+    50% { opacity: 0.7; text-shadow: 0 0 6px #dc2626; }
+    100% { opacity: 1; text-shadow: 0 0 0px red; }
+  }
+  .early-submit-all {
+    background: #c97e5a;
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .part-indicator {
+    background: var(--primary-light);
+    padding: 4px 18px;
+    border-radius: 40px;
+    font-weight: 600;
+    color: var(--primary-green);
+  }
+  .part-submit-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 32px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-top: 16px;
+  }
+  .part-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .instruction-box, .questions-panel {
+    background: var(--panel-white);
+    border-radius: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    margin-bottom: 24px;
+    padding: 20px 28px;
+  }
+  .btn-sm { background: var(--primary-light); border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 32px; cursor: pointer; color: var(--primary-green); }
+
+  .group { border: 1px solid var(--border-light); border-radius: 20px; padding: 18px 22px; margin: 24px 0; }
+  .group h4 { color: var(--primary-green); font-weight: 600; margin-bottom: 12px; font-size: 1.2rem; }
+  .instructions { background: var(--bg-soft); padding: 10px 14px; border-radius: 14px; margin-bottom: 20px; }
+  p { margin: 12px 0; line-height: 1.8; }
+  input.blank, input.blank-input {
+    border: 1.5px solid var(--border-light);
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: 140px;
+    font-size: 0.95rem;
+    background: var(--bg-soft);
+    margin: 0 6px;
+  }
+  input.blank:focus, input.blank-input:focus { outline: none; border-color: var(--primary-green); }
+  input.correct-highlight { border-color: #4ade80; background: #dcfce7; }
+  input.incorrect-highlight { border-color: #f87171; background: #fee2e2; }
+  ul { margin: 8px 0 8px 20px; }
+  label { display: block; margin: 10px 0; cursor: pointer; }
+  .radio-option { margin: 12px 0; display: flex; align-items: center; gap: 8px; }
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 16px; margin: 12px 0; }
+  .checkbox-group label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; padding: 6px 12px; border-radius: 8px; transition: 0.2s; }
+  .checkbox-group label:hover { background: var(--primary-light); }
+  .table-container { overflow-x: auto; margin: 20px 0; }
+  .question-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border-light); }
+  .question-table th, .question-table td { border: 1px solid var(--border-light); padding: 12px; text-align: left; vertical-align: top; }
+  .question-table th { background: var(--bg-soft); font-weight: 600; }
+  .question-table input.blank { width: 120px; margin: 0; }
+
+  .bottom-bar {
+    margin-top: 20px; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 15px; background: var(--panel-white); border-radius: 60px;
+    padding: 12px 24px; border: 1px solid var(--border-light);
+  }
+  .q-nav-container { display: flex; gap: 8px; flex-wrap: wrap; }
+  .q-nav-item {
+    background: var(--bg-soft); border-radius: 30px; padding: 6px 14px;
+    font-weight: 500; font-size: 14px; cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .q-nav-item.answered { background: var(--answered-bg); border-color: var(--answered-border); color: var(--primary-green); }
+  .q-nav-item.correct { background: var(--correct-bg); border-color: var(--correct-border); }
+  .q-nav-item.incorrect { background: var(--incorrect-bg); border-color: var(--incorrect-border); }
+  .bb-center { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .results-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+  .results-table th, .results-table td { border: 1px solid var(--border-light); padding: 12px 16px; text-align: left; }
+  .results-table th { background: var(--bg-soft); font-weight: 600; }
+  .result-correct { color: #15803d; font-weight: 600; background: var(--correct-bg); }
+  .result-incorrect { color: #b91c1c; font-weight: 600; background: var(--incorrect-bg); }
+
+  .part-switch-bar {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .part-btn {
+    background: var(--panel-white);
+    border: 1px solid var(--border-light);
+    padding: 10px 28px;
+    border-radius: 40px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--primary-green);
+  }
+  .part-btn.active { background: var(--primary-green); color: white; }
+  #toast { position: fixed; bottom: 90px; right: 24px; background: var(--primary-green); color: white; padding: 10px 20px; border-radius: 40px; opacity: 0; transition: 0.2s; z-index: 1000; }
+  #toast.show { opacity: 1; }
+  .disabled-input input, .disabled-input .drag-option, .disabled-input .tag { pointer-events: none; opacity: 0.7; }
+  .hl { background: #fff59d; }
+  .hl-blue { background: #CEDDFE; }
+  #notes { position: fixed; right: -420px; top: 0; bottom: 0; width: 420px; background: var(--bg-soft); border-left: 1px solid var(--border-light); transition: right 0.25s; z-index: 99; display: flex; flex-direction: column; }
+  body.notes-open #notes { right: 0; }
+  .side-panel-header { display: flex; justify-content: space-between; padding: 12px 16px; background: var(--panel-white); border-bottom: 1px solid var(--border-light); }
+  #notes-list { overflow-y: auto; padding: 12px; flex: 1; }
+  #toggle-notes-btn { background: var(--bg-soft); border: 1px solid var(--border-light); border-radius: 30px; padding: 6px 14px; cursor: pointer; }
+  @media (max-width: 768px) { .question-table input.blank { width: 90px; } .checkbox-group { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div class="master-container">
+  <div class="reborn-header">
+    <h1>🎓 Reborn新生留学 · IELTS Full Listening Mock Test</h1>
+    <p>Sections 1-4 | Asia-Pacific Tours · Spring Festival · Foot Injuries · Life on the ISS</p>
+  </div>
+
+  <div class="global-timer-area">
+    <div><span class="part-indicator" id="currentPartLabel">Part 1</span></div>
+    <div class="global-timer" id="globalTimerDisplay">00:00</div>
+    <button id="globalEarlySubmitBtn" class="early-submit-all">Early Submit All</button>
+    <button id="toggle-notes-btn" class="btn-sm">📝 Notes</button>
+  </div>
+
+  <div id="partContainer"></div>
+
+  <div class="part-switch-bar" id="partSwitchBar">
+    <button class="part-btn" data-part="1">Part 1</button>
+    <button class="part-btn" data-part="2">Part 2</button>
+    <button class="part-btn" data-part="3">Part 3</button>
+    <button class="part-btn" data-part="4">Part 4</button>
+  </div>
+</div>
+
+<div id="notes"><div class="side-panel-header"><span>My Notes</span><button id="notes-close" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button></div><div id="notes-list"></div></div>
+<div id="toast">Saved</div>
+
+<script>
+  // ========== PART CONTENT (exact from user's files, no passwords, preserved formatting) ==========
+  const PART1_HTML = `<div class="group"><h4>Questions 1-10</h4><p class="instructions">Complete the table below.<br>Write <b>ONE WORD AND/OR A NUMBER</b> for each answer.</p><table class="question-table"><thead><tr><th>Tour</th><th>Details</th><th>Cost</th></tr></thead><tbody><tr><td><span class="question-number">Example</span> Vietnam</td><td class="input-cell">• a cookery course at a 5-star hotel<br>• either <b>1</b> <input type="text" name="q1" data-q="1" class="blank"> lessons <br>&nbsp;&nbsp;&nbsp;&nbsp;or a one-day trek in the <b>2</b> <input type="text" name="q2" data-q="2" class="blank"><br>• attend a <b>3</b> <input type="text" name="q3" data-q="3" class="blank"> performance</td><td class="input-cell">£ <b>4</b> <input type="text" name="q4" data-q="4" class="blank"></td></tr><tr><td>Hong Kong</td><td class="input-cell">• go to the hills to look at <b>5</b> <input type="text" name="q5" data-q="5" class="blank"> in a country park<br>• followed by <b>6</b> <input type="text" name="q6" data-q="6" class="blank"> in a monastery<br>• visit an <b>7</b> <input type="text" name="q7" data-q="7" class="blank"> factory with the chance to shop</td><td>£1,320</td></tr><tr><td><b>8</b> <input type="text" name="q8" data-q="8" class="blank"></td><td class="input-cell">• visit a museum of traditional <b>9</b> <input type="text" name="q9" data-q="9" class="blank"><br>• tour of a big <b>10</b> <input type="text" name="q10" data-q="10" class="blank"> market</td><td>£1,800</td></tr></tbody></table><div class="example-answer" style="font-style:italic; margin-top:12px;">✅ Example answer: Vietnam (already filled).</div></div><div class="results-in-page"></div>`;
+
+  const PART2_HTML = `<div class="group"><h4>Questions 11-18</h4><p class="instructions">Complete the notes below.<br>Write <b>NO MORE THAN TWO WORDS AND/OR A NUMBER</b> for each answer.</p><div class="table-container"><table class="question-table"><thead><tr><th><b>Event</b></th><th><b>Location</b></th><th><b>Date and Time</b></th><th><b>Other Information</b></th></tr></thead><tbody><tr><td><b>Firework display</b></td><td class="blank-cell">Near the <b>11.</b> <input type="text" name="q11" class="blank"></td><td>4 September — 9 p.m.</td><td class="blank-cell">Pack a <b>12.</b> <input type="text" name="q12" class="blank"> and blanket</td></tr><tr><td><b>Display of <b>13.</b> <input type="text" name="q13" class="blank"></b></td><td>Central Park</td><td>daily</td><td class="blank-cell">Buses run from the town centre every <b>14.</b> <input type="text" name="q14" class="blank"> minutes</td></tr><tr><td><b>The <b>15.</b> <input type="text" name="q15" class="blank"> Show</b></td><td>Exhibition Centre</td><td>10–15 September — 9 a.m.–10 p.m.</td><td>&nbsp;</td></tr><tr><td><b>'Grow Your Imagination'</b></td><td class="blank-cell">in the <b>16.</b> <input type="text" name="q16" class="blank"></td><td>11–19 September</td><td>&nbsp;</td></tr><tr><td><b>'Swing in Spring'</b></td><td class="blank-cell">in the <b>17.</b> <input type="text" name="q17" class="blank"></td><td>17 & 18 September</td><td class="blank-cell">Saturday matinee performance at <b>18.</b> <input type="text" name="q18" class="blank"></td></tr></tbody></table></div></div><div class="group"><h4>Questions 19 and 20</h4><p class="instructions">Choose the correct letter, <b>A</b>, <b>B</b> or <b>C</b>.</p><p><b>19</b> In the Spring Festival competition, you can win</p><div class="radio-option"><input type="radio" name="q19" value="A"><label> <b>A</b> a family pass to 'Balloons Down Under'</label></div><div class="radio-option"><input type="radio" name="q19" value="B"><label> <b>B</b> a cheque for $200</label></div><div class="radio-option"><input type="radio" name="q19" value="C"><label> <b>C</b> a flight in a hot air balloon</label></div><p style="margin-top: 20px;"><b>20</b> You can get an entry form for the competition from</p><div class="radio-option"><input type="radio" name="q20" value="A"><label> <b>A</b> the radio station</label></div><div class="radio-option"><input type="radio" name="q20" value="B"><label> <b>B</b> the newspaper</label></div><div class="radio-option"><input type="radio" name="q20" value="C"><label> <b>C</b> the Festival's website</label></div></div><div class="results-in-page"></div>`;
+
+  const PART3_HTML = `<div class="group"><h4>Questions 21-26</h4><p class="instructions">Choose the correct letter, <b>A</b>, <b>B</b> or <b>C</b>.</p><p><b>21</b> John and Cath's presentation plans are different in</p><div class="radio-option"><input type="radio" name="q21" value="A"><label> <b>A</b> the examples used.</label></div><div class="radio-option"><input type="radio" name="q21" value="B"><label> <b>B</b> the order of information.</label></div><div class="radio-option"><input type="radio" name="q21" value="C"><label> <b>C</b> the main points made.</label></div><p><b>22</b> What do the students agree about the anatomy section of their presentation?</p><div class="radio-option"><input type="radio" name="q22" value="A"><label> <b>A</b> It would be better if Cath spoke about it.</label></div><div class="radio-option"><input type="radio" name="q22" value="B"><label> <b>B</b> It should be kept quite short.</label></div><div class="radio-option"><input type="radio" name="q22" value="C"><label> <b>C</b> It should be based on information from the internet.</label></div><p><b>23</b> What do the students agree to include in the last section?</p><div class="radio-option"><input type="radio" name="q23" value="A"><label> <b>A</b> visuals of injuries</label></div><div class="radio-option"><input type="radio" name="q23" value="B"><label> <b>B</b> demonstrations of treatment</label></div><div class="radio-option"><input type="radio" name="q23" value="C"><label> <b>C</b> interviews with patients</label></div><p><b>24</b> What is said about the different types of heel injury?</p><div class="radio-option"><input type="radio" name="q24" value="A"><label> <b>A</b> Diagnosis is straightforward.</label></div><div class="radio-option"><input type="radio" name="q24" value="B"><label> <b>B</b> They are expensive to treat.</label></div><div class="radio-option"><input type="radio" name="q24" value="C"><label> <b>C</b> Some are more serious than others.</label></div><p><b>25</b> On the subject of causes of heel injuries, the students agree to</p><div class="radio-option"><input type="radio" name="q25" value="A"><label> <b>A</b> focus on a single reason.</label></div><div class="radio-option"><input type="radio" name="q25" value="B"><label> <b>B</b> reject certain approaches.</label></div><div class="radio-option"><input type="radio" name="q25" value="C"><label> <b>C</b> use a source written by their professor.</label></div><p><b>26</b> What does Cath say about stretching as a treatment?</p><div class="radio-option"><input type="radio" name="q26" value="A"><label> <b>A</b> It is potentially risky.</label></div><div class="radio-option"><input type="radio" name="q26" value="B"><label> <b>B</b> It is commonly confused with strengthening.</label></div><div class="radio-option"><input type="radio" name="q26" value="C"><label> <b>C</b> It is the least effective part of treatment.</label></div></div><div class="group" data-limit="2" data-qgroup="27-28"><h4>Questions 27 and 28</h4><p class="instructions">Choose <b>TWO</b> letters, <b>A-E</b>.</p><p><b>27-28</b> Which TWO treatment techniques did the female runner find useful for her swollen heel?</p><div class="checkbox-group"><label><input type="checkbox" name="q27_28" value="A"> <b>A</b> massage</label><label><input type="checkbox" name="q27_28" value="B"> <b>B</b> ultrasound</label><label><input type="checkbox" name="q27_28" value="C"> <b>C</b> rest</label><label><input type="checkbox" name="q27_28" value="D"> <b>D</b> balancing exercises</label><label><input type="checkbox" name="q27_28" value="E"> <b>E</b> ice</label></div></div><div class="group" data-limit="2" data-qgroup="29-30"><h4>Questions 29 and 30</h4><p class="instructions">Choose <b>TWO</b> letters, <b>A-E</b>.</p><p><b>29-30</b> Which TWO sports did the male sprinter find most effective during his rehabilitation programme?</p><div class="checkbox-group"><label><input type="checkbox" name="q29_30" value="A"> <b>A</b> swimming</label><label><input type="checkbox" name="q29_30" value="B"> <b>B</b> weight-training</label><label><input type="checkbox" name="q29_30" value="C"> <b>C</b> running on grass</label><label><input type="checkbox" name="q29_30" value="D"> <b>D</b> cycling</label><label><input type="checkbox" name="q29_30" value="E"> <b>E</b> jumping</label></div></div><div class="results-in-page"></div>`;
+
+  const PART4_HTML = `<div class="group"><h4>Questions 31–40</h4><p class="instructions">Write <b>ONE WORD ONLY</b> for each answer.</p><p><strong>Life on the International Space Station</strong></p><p><b>Background</b></p><ul><li>Station was occupied by international teams of scientists over several months.</li><li>Research was done on living conditions.</li></ul><p><b>Early impressions</b></p><ul><li>The air smelt <b>31.</b> <input type="text" name="q31" data-q="31" class="blank-input"></li><li>The temperature was easy to adjust.</li><li>The food had enough <b>32.</b> <input type="text" name="q32" data-q="32" class="blank-input"></li><li><b>33.</b> <input type="text" name="q33" data-q="33" class="blank-input"> was efficient.</li></ul><p><b>Problems</b></p><ul><li>Difficulties with air filters caused lack of <b>34.</b> <input type="text" name="q34" data-q="34" class="blank-input"></li><li>It was difficult to keep cabin objects secure.</li><li>Systems were incompatible<ul><li>e.g. there were problems when mixing <b>35.</b> <input type="text" name="q35" data-q="35" class="blank-input"> because of the preservatives</li></ul></li><li>The <b>36.</b> <input type="text" name="q36" data-q="36" class="blank-input"> available were not always suitable for their purpose</li><li>It was difficult to access the <b>37.</b> <input type="text" name="q37" data-q="37" class="blank-input"> for equipment maintenance</li></ul><p><b>Suggested improvements</b></p><ul><li>Systems and equipment should undergo more extensive <b>38.</b> <input type="text" name="q38" data-q="38" class="blank-input"></li><li>In language training, astronauts needed practice in understanding the controller's <b>39.</b> <input type="text" name="q39" data-q="39" class="blank-input"></li><li>There should be less emphasis on <b>40.</b> <input type="text" name="q40" data-q="40" class="blank-input"> and more on other issues</li></ul></div><div class="results-in-page"></div>`;
+
+  const ANSWERS = {
+    p1: { q1:'diving', q2:'jungle', q3:'dance', q4:'1450', q5:'birds', q6:'dinner', q7:'electronics', q8:'Japan', q9:'costume', q10:'fish' },
+    p2text: { q11:'lake', q12:'picnic', q13:'flowers', q14:'20', q15:'motor', q16:'art gallery', q17:'concert hall', q18:'2.30' },
+    p2single: { q19:'C', q20:'B' },
+    p3single: { q21:'A', q22:'B', q23:'B', q24:'C', q25:'A', q26:'A' },
+    p3multiple: { q27_28: ['C','A'], q29_30: ['B','D'] },
+    p4: { q31:'fresh', q32:'variety', q33:'communication', q34:'sleep', q35:'water', q36:'tools', q37:'instructions', q38:'testing', q39:'accent', q40:'safety' }
+  };
+
+  const AUDIO_FILES = [
+    "P1 Asia-Pacific Tours Activity Holidays.mp3",
+    "P2 Spring Festival.mp3",
+    "P3 Foot Injuries.mp3",
+    "P4 Life on the International Space Station.mp3"
+  ];
+  const DURATIONS = [480, 450, 446, 420]; // seconds
+
+  let audioElements = [null, null, null, null];
+  let partStatus = { 1: { submitted: false, finishedAudio: false }, 2: { submitted: false, finishedAudio: false }, 3: { submitted: false, finishedAudio: false }, 4: { submitted: false, finishedAudio: false } };
+  let globalTimerSeconds = 0, globalInterval = null, scheduleTimeouts = [], allPartsCompleted = false, reviewTimeoutId = null, examStarted = false;
+  let currentPlayingIdx = 0;
+  let savedAnswers = { p1: {}, p2text: {}, p2single: {}, p3single: {}, p3multiple: { q27_28: [], q29_30: [] }, p4: {} };
+
+  function captureAllToSaved() {
+    for(let i=1;i<=10;i++) { let inp = document.querySelector(`input[name="q${i}"]`); if(inp) savedAnswers.p1[`q${i}`] = inp.value.trim(); }
+    for(let i=11;i<=18;i++) { let inp = document.querySelector(`input[name="q${i}"]`); if(inp) savedAnswers.p2text[`q${i}`] = inp.value.trim(); }
+    for(let i=19;i<=20;i++) { let radio = document.querySelector(`input[name="q${i}"]:checked`); if(radio) savedAnswers.p2single[`q${i}`] = radio.value; else savedAnswers.p2single[`q${i}`] = ''; }
+    for(let i=21;i<=26;i++) { let radio = document.querySelector(`input[name="q${i}"]:checked`); if(radio) savedAnswers.p3single[`q${i}`] = radio.value; else savedAnswers.p3single[`q${i}`] = ''; }
+    let chk27 = [...document.querySelectorAll(`input[name="q27_28"]:checked`)].map(c=>c.value);
+    let chk29 = [...document.querySelectorAll(`input[name="q29_30"]:checked`)].map(c=>c.value);
+    savedAnswers.p3multiple.q27_28 = chk27;
+    savedAnswers.p3multiple.q29_30 = chk29;
+    for(let i=31;i<=40;i++) { let inp = document.querySelector(`input[name="q${i}"]`); if(inp) savedAnswers.p4[`q${i}`] = inp.value.trim(); }
+  }
+
+  function restoreToCurrent(part) {
+    if(part===1) for(let i=1;i<=10;i++) { let inp = document.querySelector(`input[name="q${i}"]`); if(inp) inp.value = savedAnswers.p1[`q${i}`]||''; }
+    if(part===2) {
+      for(let i=11;i<=18;i++) { let inp = document.querySelector(`input[name="q${i}"]`); if(inp) inp.value = savedAnswers.p2text[`q${i}`]||''; }
+      for(let i=19;i<=20;i++) { let radio = document.querySelector(`input[name="q${i}"][value="${savedAnswers.p2single[`q${i}`]}"]`); if(radio) radio.checked = true; }
+    }
+    if(part===3) {
+      for(let i=21;i<=26;i++) { let radio = document.querySelector(`input[name="q${i}"][value="${savedAnswers.p3single[`q${i}`]}"]`); if(radio) radio.checked = true; }
+      savedAnswers.p3multiple.q27_28.forEach(v=>{ let cb = document.querySelector(`input[name="q27_28"][value="${v}"]`); if(cb) cb.checked=true; });
+      savedAnswers.p3multiple.q29_30.forEach(v=>{ let cb = document.querySelector(`input[name="q29_30"][value="${v}"]`); if(cb) cb.checked=true; });
+      document.querySelectorAll('.group[data-limit]').forEach(g=>{ let limit=2, cbs=g.querySelectorAll('input'); let update=()=>{ let c=g.querySelectorAll('input:checked').length; cbs.forEach(cb=>{if(!cb.checked) cb.disabled=c>=limit;});}; update(); cbs.forEach(cb=>cb.addEventListener('change',update)); });
+    }
+    if(part===4) for(let i=31;i<=40;i++) { let inp = document.querySelector(`input[name="q${i}"]`); if(inp) inp.value = savedAnswers.p4[`q${i}`]||''; }
+  }
+
+  function showToast(msg) { let t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1500); }
+  function updateGlobalTimerDisplay() { let el=document.getElementById('globalTimerDisplay'); let m=Math.floor(globalTimerSeconds/60), s=globalTimerSeconds%60; el.textContent=`${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`; if(reviewTimeoutId && !allPartsCompleted) el.classList.add('warning'); else el.classList.remove('warning'); }
+
+  function stopCurrentAudio() { if(currentPlayingIdx !== null && audioElements[currentPlayingIdx]) { audioElements[currentPlayingIdx].pause(); audioElements[currentPlayingIdx].currentTime = 0; } }
+
+  function markPartSubmitted(part) {
+    if(partStatus[part].submitted) return;
+    partStatus[part].submitted = true;
+    if(part-1 === currentPlayingIdx) stopCurrentAudio();
+    showToast(`Part ${part} submitted early.`);
+    if(document.getElementById('partContainer').dataset.currentPart == part) document.getElementById('partContainer').classList.add('disabled-input');
+    restartPlaySequence();
+  }
+
+  function markPartFinishedAudio(part) { if(!partStatus[part].finishedAudio) { partStatus[part].finishedAudio = true; if(!partStatus[part].submitted) showToast(`Part ${part} audio finished.`); checkAllPartsCompletion(); } }
+
+  function checkAllPartsCompletion() {
+    let allDone = true;
+    for(let p=1;p<=4;p++) if(!partStatus[p].submitted && !partStatus[p].finishedAudio) { allDone = false; break; }
+    if(allDone && !allPartsCompleted) {
+      allPartsCompleted = true;
+      if(globalInterval) clearInterval(globalInterval);
+      for(let t of scheduleTimeouts) clearTimeout(t);
+      let hasEarly = Object.values(partStatus).some(st => st.submitted === true);
+      if(hasEarly) finalizeResults(); else startReviewCountdown();
+    }
+  }
+
+  function startReviewCountdown() {
+    globalTimerSeconds = 120; updateGlobalTimerDisplay();
+    if(globalInterval) clearInterval(globalInterval);
+    globalInterval = setInterval(() => { if(globalTimerSeconds <= 0) { clearInterval(globalInterval); finalizeResults(); } else { globalTimerSeconds--; updateGlobalTimerDisplay(); } }, 1000);
+    reviewTimeoutId = setTimeout(()=>{}, 121000);
+  }
+
+  function finalizeResults() {
+    captureAllToSaved();
+    if(reviewTimeoutId) clearTimeout(reviewTimeoutId);
+    if(globalInterval) clearInterval(globalInterval);
+    let container = document.getElementById('partContainer');
+    let resultsDiv = container.querySelector('.results-in-page');
+    if(resultsDiv) {
+      let table = '<h4>📊 Final Answer Review</h4><table class="results-table"><thead><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th>Result</th></thead><tbody>';
+      for(let i=1;i<=10;i++) { let u=savedAnswers.p1[`q${i}`]||'—'; let c=ANSWERS.p1[`q${i}`]; let ok=u.toLowerCase()===c.toLowerCase(); table += `<tr><td style="font-weight:600">${i}</td><td>${escapeHtml(u)}</td><td>${c}</td><td class="${ok?'result-correct':'result-incorrect'}">${ok?'✔ Correct':'✖ Incorrect'}</td></tr>`; }
+      for(let i=11;i<=18;i++) { let u=savedAnswers.p2text[`q${i}`]||'—'; let c=ANSWERS.p2text[`q${i}`]; let ok=u.toLowerCase()===c.toLowerCase(); table += `<tr><td style="font-weight:600">${i}</td><td>${escapeHtml(u)}</td><td>${c}</td><td class="${ok?'result-correct':'result-incorrect'}">${ok?'✔ Correct':'✖ Incorrect'}</td></tr>`; }
+      for(let i=19;i<=20;i++) { let u=savedAnswers.p2single[`q${i}`]||'—'; let c=ANSWERS.p2single[`q${i}`]; let ok=u===c; table += `<tr><td style="font-weight:600">${i}</td><td>${escapeHtml(u)}</td><td>${c}</td><td class="${ok?'result-correct':'result-incorrect'}">${ok?'✔ Correct':'✖ Incorrect'}</td></tr>`; }
+      for(let i=21;i<=26;i++) { let u=savedAnswers.p3single[`q${i}`]||'—'; let c=ANSWERS.p3single[`q${i}`]; let ok=u===c; table += `<tr><td style="font-weight:600">${i}</td><td>${escapeHtml(u)}</td><td>${c}</td><td class="${ok?'result-correct':'result-incorrect'}">${ok?'✔ Correct':'✖ Incorrect'}</td></tr>`; }
+      let u27 = savedAnswers.p3multiple.q27_28.sort().join(','); let c27 = ANSWERS.p3multiple.q27_28.sort().join(','); let ok27 = u27===c27; table += `<tr><td style="font-weight:600">27-28</td><td>${escapeHtml(u27||'—')}</td><td>${c27}</td><td class="${ok27?'result-correct':'result-incorrect'}">${ok27?'✔ Correct':'✖ Incorrect'}</td></tr>`;
+      let u29 = savedAnswers.p3multiple.q29_30.sort().join(','); let c29 = ANSWERS.p3multiple.q29_30.sort().join(','); let ok29 = u29===c29; table += `<tr><td style="font-weight:600">29-30</td><td>${escapeHtml(u29||'—')}</td><td>${c29}</td><td class="${ok29?'result-correct':'result-incorrect'}">${ok29?'✔ Correct':'✖ Incorrect'}</td></tr>`;
+      for(let i=31;i<=40;i++) { let u=savedAnswers.p4[`q${i}`]||'—'; let c=ANSWERS.p4[`q${i}`]; let ok=u.toLowerCase()===c.toLowerCase(); table += `<tr><td style="font-weight:600">${i}</td><td>${escapeHtml(u)}</td><td>${c}</td><td class="${ok?'result-correct':'result-incorrect'}">${ok?'✔ Correct':'✖ Incorrect'}</td></tr>`; }
+      table += '</tbody></table>';
+      resultsDiv.innerHTML = table;
+    }
+    showToast("Test completed. Final review displayed.");
+  }
+
+  function escapeHtml(s) { return String(s).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+  function attachInputCapture(part) {
+    let inputs = document.querySelectorAll('input');
+    inputs.forEach(inp => {
+      inp.removeEventListener('input', captureAllToSaved);
+      inp.removeEventListener('change', captureAllToSaved);
+      inp.addEventListener('input', captureAllToSaved);
+      inp.addEventListener('change', captureAllToSaved);
+    });
+  }
+
+  function loadPart(part) {
+    let container = document.getElementById('partContainer');
+    container.dataset.currentPart = part;
+    let html = part===1? PART1_HTML : part===2? PART2_HTML : part===3? PART3_HTML : PART4_HTML;
+    container.innerHTML = html;
+    document.getElementById('currentPartLabel').innerText = `Part ${part}`;
+    if(partStatus[part].submitted) container.classList.add('disabled-input');
+    else container.classList.remove('disabled-input');
+    let btn = document.createElement('button'); btn.textContent = `Submit Part ${part}`; btn.className = 'part-submit-btn';
+    btn.onclick = () => { if(!partStatus[part].submitted && !partStatus[part].finishedAudio) markPartSubmitted(part); else showToast(`Part ${part} already completed`); };
+    let panel = container.querySelector('.group:last-child') || container;
+    panel.insertAdjacentElement('afterend', btn);
+    attachInputCapture(part);
+    restoreToCurrent(part);
+    captureAllToSaved();
+    if(part===3) {
+      document.querySelectorAll('.group[data-limit]').forEach(g=>{ let limit=2, cbs=g.querySelectorAll('input'); let update=()=>{ let c=g.querySelectorAll('input:checked').length; cbs.forEach(cb=>{if(!cb.checked) cb.disabled=c>=limit;}); captureAllToSaved();}; cbs.forEach(cb=>{cb.removeEventListener('change',update); cb.addEventListener('change',update);}); update();});
+    }
+  }
+
+  function restartPlaySequence() {
+    for(let t of scheduleTimeouts) clearTimeout(t);
+    scheduleTimeouts = [];
+    if(currentPlayingIdx !== null && audioElements[currentPlayingIdx]) audioElements[currentPlayingIdx].pause();
+    let startIdx = 0;
+    while(startIdx < 4 && (partStatus[startIdx+1].submitted || partStatus[startIdx+1].finishedAudio)) startIdx++;
+    if(startIdx >= 4) { checkAllPartsCompletion(); return; }
+    playNextPart(startIdx);
+  }
+
+  function playNextPart(idx) {
+    if(idx >= 4) { checkAllPartsCompletion(); return; }
+    let partNum = idx+1;
+    if(partStatus[partNum].submitted || partStatus[partNum].finishedAudio) { playNextPart(idx+1); return; }
+    currentPlayingIdx = idx;
+    let audio = new Audio(AUDIO_FILES[idx]);
+    audioElements[idx] = audio;
+    audio.play().catch(e => console.warn("Auto-play blocked? User interaction required. But exam start handles it."));
+    let timeoutId = setTimeout(() => {
+      if(audio && !partStatus[partNum].submitted) { audio.pause(); markPartFinishedAudio(partNum); }
+      playNextPart(idx+1);
+    }, DURATIONS[idx]*1000);
+    scheduleTimeouts.push(timeoutId);
+  }
+
+  function earlySubmitAllHandler() {
+    if(!examStarted) { showToast("Test not started yet."); return; }
+    if(confirm("Early submit all parts? Test will end immediately.")) {
+      for(let i=0;i<4;i++) if(audioElements[i]) { audioElements[i].pause(); audioElements[i].currentTime=0; }
+      for(let p=1;p<=4;p++) if(!partStatus[p].submitted && !partStatus[p].finishedAudio) partStatus[p].submitted = true;
+      finalizeResults();
+    }
+  }
+
+  function startExam() {
+    if(examStarted) return;
+    examStarted = true;
+    document.getElementById('startOverlay')?.remove();
+    document.getElementById('globalEarlySubmitBtn').disabled = false;
+    document.querySelectorAll('.part-btn').forEach(btn => btn.disabled = false);
+    loadPart(1);
+    playNextPart(0);
+    globalInterval = setInterval(()=>{ if(!allPartsCompleted && !reviewTimeoutId) globalTimerSeconds++; updateGlobalTimerDisplay(); }, 1000);
+  }
+
+  function init() {
+    let overlay = document.createElement('div'); overlay.id = 'startOverlay'; overlay.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(6px); z-index:1000; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:30px;';
+    overlay.innerHTML = `<div style="background:var(--panel-white); padding:24px 48px; border-radius:60px; color:var(--primary-green); font-weight:500;">🎧 Click START to begin the full listening test</div><button id="startExamBtn" style="background:var(--primary-green); color:white; font-size:2rem; padding:20px 50px; border-radius:60px; border:none; cursor:pointer;">▶ START TEST</button><div style="background:var(--panel-white); padding:16px 32px; border-radius:40px; font-size:0.85rem;">P1: 8min | P2: 7min30s | P3: 7min26s | P4: 7min | +2min review</div>`;
+    document.body.appendChild(overlay);
+    document.getElementById('startExamBtn').addEventListener('click', () => { overlay.remove(); startExam(); });
+    loadPart(1);
+    document.querySelectorAll('.part-btn').forEach(btn => btn.addEventListener('click', (e) => { if(examStarted) loadPart(parseInt(e.target.dataset.part)); else showToast("Start the test first."); }));
+    document.getElementById('globalEarlySubmitBtn').addEventListener('click', earlySubmitAllHandler);
+    document.getElementById('toggle-notes-btn').addEventListener('click',()=>document.body.classList.toggle('notes-open'));
+    document.getElementById('notes-close').addEventListener('click',()=>document.body.classList.remove('notes-open'));
+    document.getElementById('globalEarlySubmitBtn').disabled = true;
+    document.querySelectorAll('.part-btn').forEach(btn => btn.disabled = true);
+  }
+  init();
+</script>
+</body>
+</html>
